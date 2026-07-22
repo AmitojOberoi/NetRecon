@@ -1,5 +1,6 @@
 import host_discovery
 import scanner
+import utils
 
 while True:
     print("\n========== NETRECON ==========")
@@ -14,7 +15,16 @@ while True:
         host_discovery.host_discovery(ip)
 
     elif choice == "2":
-        ip = input("Enter Target IP Address: ")
+        target = input("Enter Target (IP or Hostname): ")
+
+        ip, hostname = utils.resolve_hostname(target)
+
+        if ip is None:
+            print("❌ Invalid Host.")
+            continue
+
+        print(f"\nResolved IP : {ip}")
+        print(f"Hostname    : {hostname}")
 
         try:
             start_port = int(input("Enter Start Port: "))
