@@ -2,7 +2,7 @@ import socket
 from concurrent.futures import ThreadPoolExecutor
 import banner
 import report
-
+import html_report
 
 def scan_single_port(ip, port, open_ports):
     """
@@ -86,6 +86,12 @@ def port_scan(target, ip, start_port, end_port):
 
     # Save JSON Report
     report.save_report(target, ip, open_ports)
+    
+    html_report.save_html_report(
+    target,
+    ip,
+    open_ports
+    )
 
     print("✅ Scan Complete!")
     print("-" * 90)
