@@ -1,0 +1,18 @@
+{
+    "target": "scanme.nmap.org",
+    "resolved_ip": "45.33.32.156",
+    "scan_time": "2026-07-23 12:36:24",
+    "total_open_ports": 2,
+    "open_ports": [
+        {
+            "port": 22,
+            "service": "ssh",
+            "banner": "-"
+        },
+        {
+            "port": 80,
+            "service": "http",
+            "banner": "HTTP/1.1 200 OK"
+        }
+    ]
+}

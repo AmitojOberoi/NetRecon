@@ -30,7 +30,7 @@ while True:
             start_port = int(input("Enter Start Port: "))
             end_port = int(input("Enter End Port: "))
 
-            scanner.port_scan(ip, start_port, end_port)
+            scanner.port_scan(target, ip, start_port, end_port)
 
         except ValueError:
             print("❌ Please enter valid port numbers.")
