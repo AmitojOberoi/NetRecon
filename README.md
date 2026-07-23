@@ -1,206 +1,217 @@
 # 🛡️ NetRecon
 
-A modular Python-based Network Reconnaissance Tool developed to strengthen my understanding of networking, socket programming, and cybersecurity concepts by implementing core reconnaissance techniques from scratch.
+**NetRecon** is a modular Python-based network reconnaissance toolkit designed to perform host discovery, custom TCP port scanning, banner grabbing, report generation, and advanced Nmap-based network scanning. The project combines a custom-built multithreaded scanner with industry-standard Nmap integration to provide a complete reconnaissance solution.
 
 ---
 
-# 📌 Current Version
+# ✨ Features
 
-**NetRecon v1.6**
+## 🔍 Host Discovery
+- Discover whether a host is online.
+- Fast ICMP-based reachability checks.
+
+## 🌐 DNS Resolution
+- Resolve hostnames to IP addresses.
+- Reverse lookup support.
+
+## ⚡ Custom TCP Port Scanner
+- Multithreaded socket-based TCP port scanner.
+- Scan any custom port range.
+- Fast concurrent scanning using Python ThreadPoolExecutor.
+
+## 🔖 Service Detection
+- Identify well-known services running on open ports.
+
+Example:
+
+```
+22    ssh
+80    http
+443   https
+```
+
+## 📡 Banner Grabbing
+Attempts to identify services by retrieving banners from open ports.
+
+Example:
+
+```
+HTTP/1.1 200 OK
+Apache/2.4.58
+OpenSSH 9.7
+```
+
+## 📄 JSON Report Generation
+Automatically generates detailed JSON reports after every custom scan.
+
+Example:
+
+```
+reports/
+    scan_2026-07-24_18-30-14.json
+```
+
+## 🌐 HTML Report Generation
+Automatically creates professional HTML reports that can be opened directly in any web browser.
+
+Example:
+
+```
+reports/
+    scan_2026-07-24_18-30-14.html
+```
+
+## 🛰️ Nmap Integration
+
+NetRecon includes an advanced Nmap scanning module with multiple scan modes.
+
+Supported scans:
+
+- ✅ Quick Scan (`-T4 -F`)
+- ✅ Service Version Detection (`-sV`)
+- ✅ Operating System Detection (`-O`)
+- ✅ Aggressive Scan (`-A`)
+- ✅ Ping Scan (`-sn`)
+
+Every Nmap scan is automatically saved as a text report.
+
+Example:
+
+```
+reports/
+    nmap_quick_scan_2026-07-24_18-40-18.txt
+```
 
 ---
 
-# 🚀 Features
-
-- ✅ Host Discovery
-- ✅ DNS Hostname Resolution
-- ✅ TCP Port Scanning
-- ✅ Service Detection
-- ✅ Multithreaded Scanning
-- ✅ HTTP Banner Grabbing
-- ✅ JSON Report Generation
-
----
-
-# 📂 Project Structure
+# 🏗️ Project Structure
 
 ```
 NetRecon/
-│
-├── banner.py              # HTTP banner grabbing
-├── host_discovery.py      # Host discovery using ping
-├── main.py                # Main application
-├── report.py              # JSON report generation
-├── scanner.py             # Multithreaded TCP port scanner
-├── utils.py               # DNS hostname resolution
-│
-├── reports/               # Generated scan reports
-│
-├── requirements.txt
+
+├── main.py
+├── scanner.py
+├── host_discovery.py
+├── banner.py
+├── utils.py
+├── report.py
+├── html_report.py
+├── nmap_scanner.py
+├── reports/
 ├── README.md
 └── .gitignore
 ```
 
 ---
 
-# ⚙️ Technologies Used
+# 🛠️ Technologies Used
 
 - Python 3
 - Socket Programming
 - ThreadPoolExecutor
+- Subprocess
 - JSON
-- DNS Resolution
-- TCP Networking
+- HTML
+- Nmap
+- Git
+- GitHub
 
 ---
 
-# ▶️ Installation
+# 📚 Concepts Demonstrated
 
-Clone the repository
+- Computer Networking
+- TCP/IP
+- Socket Programming
+- DNS Resolution
+- Multithreading
+- Concurrent Programming
+- Banner Grabbing
+- Modular Programming
+- Report Generation
+- File Handling
+- Exception Handling
+- Command Line Interfaces
+- External Tool Integration
+
+---
+
+# 🚀 Installation
+
+Clone the repository:
 
 ```bash
 git clone https://github.com/AmitojOberoi/NetRecon.git
 ```
 
-Move into the project directory
+Move into the project:
 
 ```bash
 cd NetRecon
 ```
 
-Run the application
+Install dependencies (if required):
+
+```bash
+pip install -r requirements.txt
+```
+
+> **Note:** Nmap must be installed separately and available in your system PATH to use the Nmap Scanner module.
+
+---
+
+# ▶️ Running the Project
+
+Run:
 
 ```bash
 python main.py
 ```
 
----
-
-# 🖥️ Usage
-
-Launch the application.
+Main Menu:
 
 ```
 ========== NETRECON ==========
 
 1. Host Discovery
-2. Port Scanner
-3. Exit
-```
-
-Example:
-
-```
-Enter Target : scanme.nmap.org
-
-Resolved IP : 45.33.32.156
-
-Scanning Ports 20 - 100
-```
-
-Example Output
-
-```
-PORT      SERVICE      STATUS      BANNER
-
-22        ssh          OPEN        -
-80        http         OPEN        HTTP/1.1 200 OK
+2. Custom Port Scanner
+3. Nmap Scanner
+4. Exit
 ```
 
 ---
 
-# 📄 JSON Report Generation
+# 📊 Reports
 
-Every scan automatically generates a timestamped JSON report.
+NetRecon automatically generates reports inside the `reports` directory.
 
-Example:
+Supported formats:
 
-```
-reports/
+- JSON
+- HTML
+- TXT (Nmap)
 
-scan_2026-07-23_12-31-41.json
-```
+---
 
-Example JSON
+# 🎯 Future Improvements
 
-```json
-{
-    "target": "scanme.nmap.org",
-    "resolved_ip": "45.33.32.156",
-    "scan_time": "2026-07-23 12:31:41",
-    "total_open_ports": 2,
-    "open_ports": [
-        {
-            "port": 22,
-            "service": "ssh",
-            "banner": "-"
-        },
-        {
-            "port": 80,
-            "service": "http",
-            "banner": "HTTP/1.1 200 OK"
-        }
-    ]
-}
-```
+- Export Nmap scans as XML
+- CSV Report Generation
+- Dark Theme HTML Reports
+- Scan Progress Indicator
+- Logging Support
+- Scan History
+- Rich Terminal UI
+- Whois Lookup
+- Traceroute Support
+- UDP Port Scanner
+- Optional GUI Version
 
 ---
 
 # 📸 Screenshots
 
-### Port Scanner
-
-> ![port scanner ss](image.png)
-
-### Generated JSON Report
-
-> ![JSON report ss](image-1.png)
-
----
-
-# 🛣️ Roadmap
-
-## Version 1.7
-
-- Scan Statistics
-- CSV Report Export
-
-## Version 1.8
-
-- Improved Banner Grabbing
-- Better HTTP Detection
-
-## Version 1.9
-
-- Nmap Integration
-
-## Version 2.0
-
-- HTML Report Generation
-- Rich Terminal Interface
-- Scan History
-- OS Detection
-
----
-
-# 📖 What I Learned
-
-This project helped me gain practical experience with:
-
-- Socket Programming
-- TCP Connections
-- DNS Resolution
-- Port Scanning
-- Banner Grabbing
-- Multithreading
-- JSON File Handling
-- Modular Python Project Design
-
----
-
-# 💡 Inspiration
-
-This project was inspired by the networking and reconnaissance concepts I explored during my cybersecurity internship. Instead of relying solely on existing tools, I wanted to understand how common reconnaissance techniques work by implementing them myself in Python.
+Screenshots will be added in a future update.
 
 ---
 
@@ -208,14 +219,11 @@ This project was inspired by the networking and reconnaissance concepts I explor
 
 **Amitoj Oberoi**
 
-Computer Science Engineering Student
-
-Interested in Cybersecurity, Networking, Python, and AI/ML.
-
-GitHub: **https://github.com/AmitojOberoi**
+GitHub:
+https://github.com/AmitojOberoi
 
 ---
 
-# 📄 License
+# ⭐ If you found this project useful
 
-This project is licensed under the MIT License.
+If you like this project, consider giving it a ⭐ on GitHub.
